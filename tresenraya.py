@@ -1,4 +1,4 @@
-def printTablero(tablero):
+def imprimirTablero(tablero):
     # Imprime el tablero en la pantalla
     print(tablero[1] + '|' + tablero[2] + '|' + tablero[3])
     print('-+-+-')
@@ -18,7 +18,7 @@ def insertarLetra(letra, posicion):
     # Inserta una letra en la posición especificada en el tablero
     if espacioDisponible(posicion):
         tablero[posicion] = letra
-        printTablero(tablero)
+        imprimirTablero(tablero)
         if (comprobarEmpate()):
             print("¡Empate!")
             exit()
@@ -83,9 +83,9 @@ def movimientoComputadora():
 
 def minimax(tablero, profundidad, maximizando):
     # Implementación del algoritmo Minimax para la toma de decisiones de la computadora
-    if (comprobarGanador(computadora)):
+    if (comprobarMarcaGanadora(computadora)):
         return 1
-    elif (comprobarGanador(jugador)):
+    elif (comprobarMarcaGanadora(jugador)):
         return -1
     elif (comprobarEmpate()):
         return 0
@@ -104,4 +104,28 @@ def minimax(tablero, profundidad, maximizando):
         mejorPuntaje = 800
         for clave in tablero.keys():
             if (tablero[clave] == ' '):
-                tab
+                tablero[clave] = jugador
+                puntaje = minimax(tablero, profundidad + 1, True)
+                tablero[clave] = ' '
+                if (puntaje < mejorPuntaje):
+                    mejorPuntaje = puntaje
+        return mejorPuntaje
+
+# Inicialización del tablero
+tablero = {1: ' ', 2: ' ', 3: ' ',
+           4: ' ', 5: ' ', 6: ' ',
+           7: ' ', 8: ' ', 9: ' '}
+
+imprimirTablero(tablero)
+print("¡La computadora va primero! ¡Buena suerte!")
+print("Las posiciones son las siguientes:")
+print("1, 2, 3 ")
+print("4, 5, 6 ")
+print("7, 8, 9 ")
+print("\n")
+jugador = 'O'
+computadora = 'X'
+
+while not comprobarGanador():
+    movimientoComputadora()
+    movimientoJugador()
