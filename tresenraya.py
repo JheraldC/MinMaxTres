@@ -55,6 +55,27 @@ def comprobarGanador():
     else:
         return False
 
+def comprobarMarcaGanadora(marca):
+    # Comprueba si una marca (X u O) ha ganado
+    if (tablero[1] == tablero[2] and tablero[1] == tablero[3] and tablero[1] == marca):
+        return True
+    elif (tablero[4] == tablero[5] and tablero[4] == tablero[6] and tablero[4] == marca):
+        return True
+    elif (tablero[7] == tablero[8] and tablero[7] == tablero[9] and tablero[7] == marca):
+        return True
+    elif (tablero[1] == tablero[4] and tablero[1] == tablero[7] and tablero[1] == marca):
+        return True
+    elif (tablero[2] == tablero[5] and tablero[2] == tablero[8] and tablero[2] == marca):
+        return True
+    elif (tablero[3] == tablero[6] and tablero[3] == tablero[9] and tablero[3] == marca):
+        return True
+    elif (tablero[1] == tablero[5] and tablero[1] == tablero[9] and tablero[1] == marca):
+        return True
+    elif (tablero[7] == tablero[5] and tablero[7] == tablero[3] and tablero[7] == marca):
+        return True
+    else:
+        return False
+
 def comprobarEmpate():
     # Comprueba si hay un empate
     for clave in tablero.keys():
